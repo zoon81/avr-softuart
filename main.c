@@ -75,7 +75,7 @@ int main(void)
 	char c;
 	static const char pstring[] PROGMEM = 
 		"adapted for Atmel AVR and this demo by Martin Thomas\r\n";
-	unsigned short cnt = 0;
+
 #if (F_CPU > 4000000UL)
 #define CNTHALLO (unsigned int)(0xFFFF)
 #else 
@@ -97,20 +97,12 @@ int main(void)
 #endif
 	
 	for (;;) {
-	
-		if ( softuart_kbhit() ) {
-			c = softuart_getchar();
+
+			c = softuart_getchar_wait();
 			softuart_putchar( '[' );
 			softuart_putchar( c );
-			softuart_putchar( ']' );
-		}
+			softuart_puts( "]\n\r" );
 
-		cnt++;
-		if (cnt == CNTHALLO) {
-			cnt = 0;
-			softuart_puts_P( " Hello " );
-		}
-		
 	}
 	
 	return 0; /* never reached */

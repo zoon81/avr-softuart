@@ -246,8 +246,9 @@ static void io_init(void)
 {
 	// TX-Pin as output
 	SOFTUART_TXDDR |=  ( 1 << SOFTUART_TXBIT );
-	// RX-Pin as input
+	// RX-Pin as input and activate PulllUp resistor
 	SOFTUART_RXDDR &= ~( 1 << SOFTUART_RXBIT );
+	SOFTUART_RXPORT |= (1 << SOFTUART_RXBIT);
 }
 
 static void timer_init(void)
@@ -310,6 +311,20 @@ char softuart_getchar( void )
 		qout = 0;
 	}
 	
+	return( ch );
+}
+char softuart_getchar_wait( void )
+{
+	char ch;
+
+	while (!( softuart_kbhit() ) ) {
+		idle();
+	}
+	ch = inbuf[qout];
+	if ( ++qout >= SOFTUART_IN_BUF_SIZE ) {
+		qout = 0;
+	}
+
 	return( ch );
 }
 
