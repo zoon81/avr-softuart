@@ -2,6 +2,16 @@
 > It's licensed under a BSD-style license. My intent is to extend this code for
 > my own projects and possibly provide an Arduino port.
 
+[News]
+=====
+Added softuart_getchar_wait() function.This is waiting until get valid character
+
+Activate pullUp on RX pin
+
+Support added for ATmega88
+
+
+
 [Timer-based AVR Software-UARTS][Martin_THOMAS]
 ==============================
 
