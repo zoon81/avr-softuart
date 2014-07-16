@@ -43,16 +43,18 @@
 #elif defined (__AVR_ATmega324P__) || defined (__AVR_ATmega324A__)  \
    || defined (__AVR_ATmega644P__) || defined (__AVR_ATmega644PA__) \
    || defined (__AVR_ATmega328P__) || defined (__AVR_ATmega328PA__) \
-   || defined (__AVR_ATmega164P__) || defined (__AVR_ATmega88__)
+   || defined (__AVR_ATmega164P__) || defined (__AVR_ATmega164A__) || defined (__AVR_ATmega88__)
 
-    #define SOFTUART_RXPIN   PINB
-	#define SOFTUART_RXPORT  PORTB
-    #define SOFTUART_RXDDR   DDRB
-    #define SOFTUART_RXBIT   PB1
+    //Configure here what pins do you want to use for RX and TX lines.
+	//Default use PB1 and PB2
+	#define SOFTUART_RXPIN   PINB	//Input PORT for RX line
+	#define SOFTUART_RXPORT  PORTB //PORT for internal PullUp resistor on RX line
+    #define SOFTUART_RXDDR   DDRB  // Data direction for RX line
+    #define SOFTUART_RXBIT   PB1   // Input bit for RX line
 
-    #define SOFTUART_TXPORT  PORTB
-    #define SOFTUART_TXDDR   DDRB
-    #define SOFTUART_TXBIT   PB2
+    #define SOFTUART_TXPORT  PORTB //Input PORT for TX line
+    #define SOFTUART_TXDDR   DDRB	// Data direction for TX line
+    #define SOFTUART_TXBIT   PB2	// Input bit for TX line
 
     #define SOFTUART_T_COMP_LABEL      TIMER0_COMPA_vect
     #define SOFTUART_T_COMP_REG        OCR0A
